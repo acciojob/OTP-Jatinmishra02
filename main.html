@@ -1,31 +1,62 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTP Verification</title>
+<style>
+  /* Style for the OTP input */
+  .code-container {
+    display: flex;
+    justify-content: center;
+  }
+  .code {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+</style>
 </head>
-
-	<!-- the entire body must be written by student -->
 <body>
+  <!-- Heading and subheading -->
+  <h1 id="verification_heading">OTP Verification</h1>
+  <h3 id="verification_subtext">Please enter the 6-digit OTP sent to your mobile number</h3>
 
-<div class="container">
-    <h1 id="verification_heading">OTP Verification</h1>
-    <p id="verification_subtext">Please enter the 6-digit OTP sent to your phone number.</p>
-    
-    <div class="code-container">
-        <input type="text" class="code" maxlength="1">
-        <input type="text" class="code" maxlength="1">
-        <input type="text" class="code" maxlength="1">
-        <input type="text" class="code" maxlength="1">
-        <input type="text" class="code" maxlength="1">
-        <input type="text" class="code" maxlength="1">
-    </div>
-</div>
+  <!-- OTP input container -->
+  <div class="code-container">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+    <input type="text" class="code" maxlength="1">
+  </div>
 
-	<script type="text/javascript" src="./script.js">
+<script>
+  // Get all the input elements
+  const otpInputs = document.querySelectorAll('.code');
+
+  // Add event listener to each input
+  otpInputs.forEach((input, index) => {
+    // Focus next input on input value change
+    input.addEventListener('input', (e) => {
+      if (e.target.value.length === 1 && index < otpInputs.length - 1) {
+        otpInputs[index + 1].focus();
+      }
+    });
+
+    // Focus previous input on backspace key press
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && index > 0) {
+        otpInputs[index - 1].focus();
+      }
+    });
+  });
 </script>
-
 </body>
-
 </html>
